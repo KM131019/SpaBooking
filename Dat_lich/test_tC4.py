@@ -51,7 +51,7 @@ class TestTC4():
     staff_dropdown.find_element(By.CSS_SELECTOR, "option[value='2']").click()
     time.sleep(3)
     # Chọn dịch vụ
-    self.driver.find_element(By.CSS_SELECTOR, ".bookly\\3A\\@max-2xl\\/main\\3Aw-full").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".bookly-service-card-mark").click()
     time.sleep(3)
     # Chọn khung giờ
     self.driver.find_element(By.XPATH, "//button[contains(.,'8:00')]").click()
