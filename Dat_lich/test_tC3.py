@@ -39,7 +39,7 @@ class TestTC3():
     time.sleep(3)
 
     # Chọn ngày
-    self.driver.find_element(By.CSS_SELECTOR, ".bookly\\3A flex:nth-child(5) > .bookly\\3Ah-10:nth-child(6)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".bookly\\3A flex:nth-child(4) > .bookly\\3Ah-10:nth-child(2)").click()
     # Dropdown dịch vụ
     service_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "select[id*='services']")))
     service_dropdown.click()
