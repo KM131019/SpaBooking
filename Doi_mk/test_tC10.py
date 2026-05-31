@@ -28,9 +28,9 @@ class TestTC10():
     time.sleep(3)
     assert self.driver.title == "Tài khoản -"
     self.driver.find_element(By.LINK_TEXT, "Change Password").click()
-    self.driver.find_element(By.ID, "password_current").send_keys("Quoc1997Man1995@")
-    self.driver.find_element(By.ID, "password_1").send_keys("Quoc1997Man1995@")
-    self.driver.find_element(By.ID, "password_2").send_keys("Quoc1997Man1995@")
+    self.driver.find_element(By.ID, "password_current").send_keys("Tuan1997Phac1995@")
+    self.driver.find_element(By.ID, "password_1").send_keys("Tuan1997Phac1995@")
+    self.driver.find_element(By.ID, "password_2").send_keys("Tuan1997Phac1995@")
     self.driver.find_element(By.NAME, "save_change_password").click()
     time.sleep(3)
     elements = self.driver.find_elements(By.CSS_SELECTOR, ".user-registration-error")
