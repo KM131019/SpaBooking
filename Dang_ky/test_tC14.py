@@ -1,35 +1,35 @@
 import pytest
-import time
-import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-class TestTC14():
-  def setup_method(self, method):
-    self.driver = webdriver.Chrome()
-    self.driver.maximize_window()
-    self.vars = {}
-  
-  def teardown_method(self, method):
-    self.driver.quit()
-  
-  def test_tC14(self):
-    self.driver.get("https://chimmymeowspa.com//")
-    self.driver.find_element(By.CSS_SELECTOR, "#menu-item-492 .menu-text").click()
-    time.sleep(3)
-    self.driver.find_element(By.LINK_TEXT, "Bạn chưa có tài khoản? Đăng ký ngay.").click()
-    time.sleep(3)
-    self.driver.find_element(By.ID, "user_login").send_keys("Bay")
-    self.driver.find_element(By.ID, "user_email").send_keys("BAY@gmail.com")
-    self.driver.find_element(By.ID, "user_pass").send_keys("baybay7@")
-    self.driver.find_element(By.ID, "user_confirm_password").send_keys("baybay7@")
-    self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
-    time.sleep(3)
-    elements = self.driver.find_elements(By.ID, "user_pass-error")
-    assert len(elements) > 0
-  
+
+class TestTC14:
+
+    def setup_method(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+        self.wait = WebDriverWait(self.driver, 10)
+
+    def teardown_method(self):
+        self.driver.quit()
+
+    def test_tC14(self):
+        driver = self.driver
+        driver.get("https://chimmymeowspa.com/")
+
+        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#menu-item-492 .menu-text"))).click()
+
+        self.wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Bạn chưa có tài khoản? Đăng ký ngay."))).click()
+
+        self.wait.until(EC.visibility_of_element_located((By.ID, "user_login"))).send_keys("Bay")
+        driver.find_element(By.ID, "user_email").send_keys("BAY@gmail.com")
+        driver.find_element(By.ID, "user_pass").send_keys("baybay7@")
+        driver.find_element(By.ID, "user_confirm_password").send_keys("baybay7@")
+
+        driver.find_element(By.CSS_SELECTOR, ".btn").click()
+
+        # Verify lỗi Họ tên bắt buộc
+        error = self.wait.until(EC.visibility_of_element_located((By.ID, "user_pass-error")))
+        assert error.is_displayed()
