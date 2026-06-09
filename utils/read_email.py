@@ -4,7 +4,6 @@ import re
 import time
 from email.header import decode_header
 
-
 def get_reset_link(gmail, app_password, timeout=120):
 
     mail = imaplib.IMAP4_SSL("imap.gmail.com")
@@ -14,7 +13,6 @@ def get_reset_link(gmail, app_password, timeout=120):
     newest_seen = None
 
     while time.time()-start < timeout:
-
         mail.select("inbox")
 
         # ép Gmail refresh
@@ -24,7 +22,6 @@ def get_reset_link(gmail, app_password, timeout=120):
         ids = data[0].split()
 
         if ids:
-
             newest = ids[-1]
 
             if newest != newest_seen:
@@ -51,7 +48,6 @@ def get_reset_link(gmail, app_password, timeout=120):
 
                 if link:
                     return link.group()
-
         time.sleep(5)
 
     return None
