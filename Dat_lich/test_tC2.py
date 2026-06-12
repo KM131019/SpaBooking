@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class TestTC2():
   def setup_method(self):
     self.driver = webdriver.Chrome()
+    self.driver.maximize_window()
   
   def teardown_method(self):
     self.driver.quit()
